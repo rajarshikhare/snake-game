@@ -1,5 +1,4 @@
 #include<iostream>
-#include <pthread.h>
 #include "position.h"
 #include <conio.h>
 using namespace std;
@@ -12,23 +11,33 @@ typedef struct body{
 
 body snake[10];
 
-void move(char, body []);
+void move(char);
+
+void delay(int time){
+	int c,d;
+	for ( c = 1 ; c <= time*time ; c++ )
+       for ( d = 1 ; d <= time*time ; d++ )
+       {}
+}
 
 int main(){
 	system("mode 132,31");
 	int i,j = 0,k;
 	
 	for(i = 1; i <= lenght; i = i + 1 ){
-		cout<<"@";
-		snake[10-i].x = i;
+		snake[10-i].x = i*2;
 		snake[10-j].y = 0;
-		
+		gotoxy(snake[10-i].x,snake[10-j].y);
+		cout<<"@";
 	}
 	char c;
 	while(1){
-		if((c = getch())){
+		if((kbhit())){
+			c = getch();
+			delay(80);
 			move(c);
 		} else {
+			delay(80);
 			move(c);
 		} 
 	}
@@ -46,7 +55,7 @@ void move(char c){
 			if(snake[0].x/132){
 				snake[0].x = 0;
 			} else {
-				snake[0].x++;
+				snake[0].x = snake[0].x + 2;
 			}
 			gotoxy(snake[0].x, snake[0].y);
 			cout<<"@";
@@ -74,7 +83,7 @@ void move(char c){
 			if(snake[0].x <= 0){
 				snake[0].x = 132;
 			} else {
-				snake[0].x--;
+				snake[0].x = snake[0].x - 2;
 			}
 			gotoxy(snake[0].x, snake[0].y);
 			cout<<"@";
