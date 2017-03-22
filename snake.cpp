@@ -4,6 +4,7 @@
 using namespace std;
 
 int lenght = 10;
+int speed = 90;
 
 typedef struct body{
 	int x,y;
@@ -11,6 +12,9 @@ typedef struct body{
 
 body snake[10];
 
+int food_x = 63,food_y = 24;
+
+void change_food_location();
 void move(char);
 
 void delay(int time){
@@ -28,16 +32,16 @@ int main(){
 		snake[10-i].x = i*2;
 		snake[10-j].y = 0;
 		gotoxy(snake[10-i].x,snake[10-j].y);
-		cout<<"@";
+		cout<<"*";
 	}
 	char c;
 	while(1){
 		if((kbhit())){
 			c = getch();
-			delay(80);
+			delay(speed);
 			move(c);
 		} else {
-			delay(80);
+			delay(speed);
 			move(c);
 		} 
 	}
@@ -45,6 +49,8 @@ int main(){
 
 void move(char c){
 	int i,j,k;
+	gotoxy(food_x,food_y);
+	cout<<"#";
 	if(c == 'd'){
 			gotoxy(snake[9].x, snake[9].y);
 			cout<<" ";
@@ -58,7 +64,11 @@ void move(char c){
 				snake[0].x = snake[0].x + 2;
 			}
 			gotoxy(snake[0].x, snake[0].y);
-			cout<<"@";
+			if(snake[0].x == food_x + 1 && snake[0].y == food_y){
+				lenght++;
+				change_food_location();
+			}
+			cout<<"*";
 		} else if(c == 's'){
 			gotoxy(snake[9].x, snake[9].y);
 			cout<<" ";
@@ -72,7 +82,12 @@ void move(char c){
 				snake[0].y++;
 			}
 			gotoxy(snake[0].x, snake[0].y);
-			cout<<"@";
+			if(snake[0].x == food_x + 1 && snake[0].y == food_y){
+				lenght++;
+				change_food_location();
+				speed++;
+			}
+			cout<<"*";
 		} else if(c == 'a'){
 			gotoxy(snake[9].x, snake[9].y);
 			cout<<" ";
@@ -86,7 +101,12 @@ void move(char c){
 				snake[0].x = snake[0].x - 2;
 			}
 			gotoxy(snake[0].x, snake[0].y);
-			cout<<"@";
+			if(snake[0].x == food_x + 1 && snake[0].y == food_y){
+				lenght++;
+				change_food_location();
+				speed++;
+			}
+			cout<<"*";
 		} else if(c == 'w'){
 			gotoxy(snake[9].x, snake[9].y);
 			cout<<" ";
@@ -100,8 +120,20 @@ void move(char c){
 				snake[0].y--;
 			}
 			gotoxy(snake[0].x, snake[0].y);
-			cout<<"@";
+			if(snake[0].x == food_x + 1  && snake[0].y == food_y){
+				lenght++;
+				change_food_location();
+				speed++;
+			}
+			cout<<"*";
 		}
-}	
+}
+
+void change_food_location(){
+	gotoxy(food_x,food_y);
+	cout<<" ";
+	food_x = rand() % 130;
+	food_y = rand() % 30;
+}
 
 
