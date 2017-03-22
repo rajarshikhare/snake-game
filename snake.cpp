@@ -53,7 +53,7 @@ void move(char c){
 	int i,j,k;
 	gotoxy(food_x,food_y);
 	cout<<"@";
-	if((previous_char == 'w' && c == 's') || (previous_char == 'a' && c == 'd')){
+	if((previous_char == 'w' && c == 's') || (previous_char == 's' && c == 'w') || (previous_char == 'a' && c == 'd') || (previous_char == 'd' && c == 'a')){
 		return;
 	} 
 	previous_char = c;
@@ -65,7 +65,7 @@ void move(char c){
 				snake[i].y = snake[i-1].y;
 			}
 			if(snake[0].x/80){
-				snake[0].x = 0;
+				snake[0].x = 1;
 			} else {
 				snake[0].x = snake[0].x + 2;
 			}
@@ -102,8 +102,8 @@ void move(char c){
 				snake[i].x = snake[i-1].x;
 				snake[i].y = snake[i-1].y;
 			}
-			if(snake[0].x <= 0){
-				snake[0].x = 80;
+			if(snake[0].x <= 1){
+				snake[0].x = 79;
 			} else {
 				snake[0].x = snake[0].x - 2;
 			}
@@ -121,7 +121,7 @@ void move(char c){
 				snake[i].x = snake[i-1].x;
 				snake[i].y = snake[i-1].y;
 			}
-			if(snake[0].y <= 0){
+			if(snake[0].y <= 1){
 				snake[0].y = 29;
 			} else {
 				snake[0].y--;
@@ -143,7 +143,7 @@ void food_encounter(){
 	cout<<" ";
 	food_x = rand() % 80;
 	food_y = rand() % 29;
-	speed = speed--;
+	speed-=1;
 	game_point+=5;
 }
 
