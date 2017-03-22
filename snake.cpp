@@ -29,7 +29,6 @@ void delay(int speed){
 int main(){
 	system("mode 80,31");
 	int i,j = 0,k;
-	
 	for(i = 1; i <= lenght; i = i + 1 ){
 		snake[10-i].x = i*2;
 		snake[10-j].y = 0;
