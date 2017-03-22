@@ -64,7 +64,7 @@ void move(char c){
 				snake[0].x = snake[0].x + 2;
 			}
 			gotoxy(snake[0].x, snake[0].y);
-			if(snake[0].x == food_x + 1 && snake[0].y == food_y){
+			if((snake[0].x == food_x || snake[0].x == food_x + 1) && snake[0].y == food_y){
 				lenght++;
 				change_food_location();
 			}
@@ -82,7 +82,7 @@ void move(char c){
 				snake[0].y++;
 			}
 			gotoxy(snake[0].x, snake[0].y);
-			if(snake[0].x == food_x + 1 && snake[0].y == food_y){
+			if((snake[0].x == food_x || snake[0].x == food_x + 1) && snake[0].y == food_y){
 				lenght++;
 				change_food_location();
 				speed++;
@@ -101,7 +101,7 @@ void move(char c){
 				snake[0].x = snake[0].x - 2;
 			}
 			gotoxy(snake[0].x, snake[0].y);
-			if(snake[0].x == food_x + 1 && snake[0].y == food_y){
+			if((snake[0].x == food_x || snake[0].x == food_x + 1) && snake[0].y == food_y){
 				lenght++;
 				change_food_location();
 				speed++;
@@ -120,7 +120,7 @@ void move(char c){
 				snake[0].y--;
 			}
 			gotoxy(snake[0].x, snake[0].y);
-			if(snake[0].x == food_x + 1  && snake[0].y == food_y){
+			if((snake[0].x == food_x || snake[0].x == food_x + 1) && snake[0].y == food_y){
 				lenght++;
 				change_food_location();
 				speed++;
