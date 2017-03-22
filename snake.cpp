@@ -6,6 +6,7 @@ using namespace std;
 int lenght = 10;
 int speed = 90;
 int game_point = 0;
+char previous_char;
 
 typedef struct body{
 	int x,y;
@@ -52,6 +53,10 @@ void move(char c){
 	int i,j,k;
 	gotoxy(food_x,food_y);
 	cout<<"@";
+	if((previous_char == 'w' && c == 's') || (previous_char == 'a' && c == 'd')){
+		return;
+	} 
+	previous_char = c;
 	if(c == 'd'){
 			gotoxy(snake[lenght - 1].x, snake[lenght - 1].y);
 			cout<<" ";
@@ -78,7 +83,7 @@ void move(char c){
 				snake[i].x = snake[i-1].x;
 				snake[i].y = snake[i-1].y;
 			}
-			if(snake[0].y/31){
+			if(snake[0].y/29){
 				snake[0].y = 0;
 			}else {
 				snake[0].y++;
@@ -117,7 +122,7 @@ void move(char c){
 				snake[i].y = snake[i-1].y;
 			}
 			if(snake[0].y <= 0){
-				snake[0].x = 0;
+				snake[0].y = 29;
 			} else {
 				snake[0].y--;
 			}
@@ -136,8 +141,8 @@ void move(char c){
 void food_encounter(){
 	gotoxy(food_x,food_y);
 	cout<<" ";
-	food_x = rand() % 130;
-	food_y = rand() % 30;
+	food_x = rand() % 80;
+	food_y = rand() % 29;
 	speed = speed--;
 	game_point+=5;
 }
@@ -153,5 +158,3 @@ void check_game(){
 		}
 	}
 }
-
-
