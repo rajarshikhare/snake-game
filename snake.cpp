@@ -14,7 +14,7 @@ typedef struct body{
 
 body snake[80];
 
-int food_x = 63,food_y = 24;
+int food_x = 64,food_y = 24;
 
 void food_encounter();
 void move(char);
@@ -75,6 +75,7 @@ void move(char c){
 				lenght++;
 				food_encounter();
 			}
+			gotoxy(snake[0].x,snake[0].y);
 			cout<<"*";
 		} else if(c == 's'){
 			gotoxy(snake[lenght - 1].x, snake[lenght - 1].y);
@@ -94,6 +95,7 @@ void move(char c){
 				lenght++;
 				food_encounter();
 			}
+			gotoxy(snake[0].x,snake[0].y);
 			cout<<"*";
 		} else if(c == 'a'){
 			gotoxy(snake[lenght - 1].x, snake[lenght - 1].y);
@@ -113,6 +115,7 @@ void move(char c){
 				lenght++;
 				food_encounter();
 			}
+			gotoxy(snake[0].x,snake[0].y);
 			cout<<"*";
 		} else if(c == 'w'){
 			gotoxy(snake[lenght - 1].x, snake[lenght - 1].y);
@@ -132,6 +135,7 @@ void move(char c){
 				lenght++;
 				food_encounter();
 			}
+			gotoxy(snake[0].x,snake[0].y);
 			cout<<"*";
 		}
 		gotoxy(0,30);
@@ -141,7 +145,15 @@ void move(char c){
 void food_encounter(){
 	gotoxy(food_x,food_y);
 	cout<<" ";
-	food_x = rand() % 80;
+	int a;
+	while(1){
+		a = rand() % 80;
+		if(a%2 == 0){
+			break;
+		}
+	}
+	//a = rand() % 80;
+	food_x = a;
 	food_y = rand() % 29;
 	speed-=1;
 	game_point+=5;
@@ -154,6 +166,7 @@ void check_game(){
 			gotoxy(80/2-5,31/2);
 			cout<<"Game over and your score was : "<<game_point<<endl;
 			getch();
+			getch();getch();getch();getch();getch();getch();getch();
 			exit(0);
 		}
 	}
