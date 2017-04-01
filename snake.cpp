@@ -163,7 +163,7 @@ void check_game(){
 	int i;
 	for(i = 1; i < lenght; i++){
 		if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
-			gotoxy(80/2-5,31/2);
+			gotoxy(80/2-17,31/2);
 			cout<<"Game over and your score was : "<<game_point<<endl;
 			getch();
 			getch();getch();getch();getch();getch();getch();getch();
