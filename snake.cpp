@@ -1,10 +1,12 @@
 #include<iostream>
 #include "position.h"
 #include <conio.h>
+#include<windows.h>
+
 using namespace std;
 
 int lenght = 10;
-int speed = 90;
+int speed = 150;
 int game_point = 0;
 char previous_char;
 
@@ -21,14 +23,15 @@ void move(char);
 void check_game();
 
 void delay(int speed){
-	int c,d;
+	/*int c,d;
 	for ( c = 1 ; c <= speed*speed ; c++ )
        for ( d = 1 ; d <= speed*speed ; d++ )
-       {}
+       {}*/
+	Sleep(speed);
 }
 
 int main(){
-	system("mode 80,31");
+	system("mode 80,31 && color 4A");
 	int i,j = 0,k;
 	for(i = 1; i <= lenght; i = i + 1 ){
 		snake[10-i].x = i*2;
@@ -155,7 +158,7 @@ void food_encounter(){
 	//a = rand() % 80;
 	food_x = a;
 	food_y = rand() % 29;
-	speed-=1;
+	speed-=5;
 	game_point+=5;
 }
 
